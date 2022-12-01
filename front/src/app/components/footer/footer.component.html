@@ -1,0 +1,11 @@
+<mat-toolbar class="footer">
+    <!-- <div>Usuario Logado: </div>
+    {{ usuarioLogado }} -->
+    <div *ngIf="temUsuarioLogado">
+        <a class="nav-link collapsed" (click)="logout()" href="#"
+        data-toggle="collapsed" data-target="#collapseLayouts"
+        aria-expanded="false" aria-controls="collapseLayouts" ><div class="sb-nav-link-icon"><i class="fas fa-sign-out"></i></div>
+        Deslogar
+    </a>
+    </div>
+</mat-toolbar>
