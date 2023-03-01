@@ -2,20 +2,20 @@ package com.topicosespeciais.quicktask.services;
 
 import com.topicosespeciais.quicktask.domain.QuickTask;
 import com.topicosespeciais.quicktask.repository.QuickTaskRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 
 @Service
 public class DBService {
 
-    @Autowired
-    private QuickTaskRepository quickTaskRepository;
+    private final QuickTaskRepository quickTaskRepository;
+
+    public DBService(QuickTaskRepository quickTaskRepository) {
+        this.quickTaskRepository = quickTaskRepository;
+    }
 
     public void instaciaBaseDados() throws ParseException {
 

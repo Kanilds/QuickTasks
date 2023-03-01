@@ -1,6 +1,5 @@
 package com.topicosespeciais.quicktask.configuration;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,11 +18,14 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 @EnableAuthorizationServer
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
 
-    @Autowired
-    private AuthenticationManager authenticationManager;
+    private final AuthenticationManager authenticationManager;
 
     @Value("${security.jwt.signing-key}")
     private String signingKey;
+
+    public AuthorizationServerConfig(AuthenticationManager authenticationManager) {
+        this.authenticationManager = authenticationManager;
+    }
 
     @Bean
     public TokenStore tokenStore(){
@@ -38,7 +40,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     }
 
     @Override
-    public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
+    public void configure(AuthorizationServerEndpointsConfigurer endpoints) {
         endpoints
                 .tokenStore(tokenStore())
                 .accessTokenConverter(accessTokenConverter())

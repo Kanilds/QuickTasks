@@ -1,18 +1,16 @@
 package com.topicosespeciais.quicktask.resources.exceptions;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 public class StandardError implements Serializable {
 
+    @Serial
     private static final long serialVersionUID = 1L;
 
     private Long timestamp;
     private Integer status;
     private String message;
-
-    public StandardError() {
-        super();
-    }
 
     public StandardError(Long timestamp, Integer status, String message) {
         super();

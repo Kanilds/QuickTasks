@@ -1,14 +1,18 @@
 package com.topicosespeciais.quicktask.domain;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.hibernate.Hibernate;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.util.Objects;
 
 @Entity
-@Data
+@Getter
+@Setter
+@ToString
+@RequiredArgsConstructor
 @NoArgsConstructor
 public class Usuario {
 
@@ -26,5 +30,16 @@ public class Usuario {
     @NotEmpty(message = "{campo.senha.obrigatorio}")
     private String password;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        Usuario usuario = (Usuario) o;
+        return id != null && Objects.equals(id, usuario.id);
+    }
 
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
 }

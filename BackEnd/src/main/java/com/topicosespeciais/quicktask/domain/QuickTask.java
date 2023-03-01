@@ -7,13 +7,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.io.Serializable;
-import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
 public class QuickTask implements Serializable {
-
-    private static final long SerialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -29,12 +29,12 @@ public class UsuarioService implements UserDetailsService {
         return obj.orElseThrow(() -> new ObjNotFoundException(
                 "Objeto não encontrado: " + id + ", Tipo: " + QuickTask.class.getName()));
     }
-    public Usuario create(Usuario obj) {
+    public void create(Usuario obj) {
         boolean exists = repository.existsByUsername(obj.getUsername());
         if (exists){
             throw new UsuarioCadastradoException(obj.getUsername());
         }
-        return repository.save(obj);
+        repository.save(obj);
     }
 
     @Override
